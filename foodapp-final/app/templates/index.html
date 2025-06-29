@@ -1,0 +1,26 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<section style="background-color: #495E57; color: white; padding: 40px 80px; display: flex; justify-content: space-between; align-items: center;">
+  <div style="max-width: 500px;">
+    <h1 style="font-size: 48px; color: #F4CE14;">Little Lemon</h1>
+    <h2 style="font-size: 32px;">Chicago</h2>
+    <p style="font-size: 18px; line-height: 1.6;">
+      We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
+    </p>
+    <a href="{% url 'book' %}" style="display: inline-block; margin-top: 20px; background-color: #F4CE14; color: black; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      Reserve a table
+    </a>
+  </div>
+
+  <div>
+    <img src="/media/plate.jpg" alt="Little Lemon Food" style="width: 300px; border-radius: 10px;">
+  </div>
+</section>
+
+{% endblock %}
+

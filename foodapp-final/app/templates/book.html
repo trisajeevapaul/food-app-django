@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+.reservation-hero {
+    background: linear-gradient(135deg, #495e57 0%, #3d4f47 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.reservation-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Markazi Text', serif;
+}
+
+.reservation-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+.reservation-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.reservation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.reservation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.form-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    padding: 40px;
+    height: fit-content;
+}
+
+.form-card h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 600;
+}
+
+.form-subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    border-color: #495e57;
+    box-shadow: 0 0 0 0.2rem rgba(73, 94, 87, 0.25);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.guest-number-wrapper {
+    position: relative;
+}
+
+.guest-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.guest-btn {
+    background: #495e57;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guest-btn:hover {
+    background: #3d4f47;
+    transform: scale(1.1);
+}
+
+.guest-display {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    min-width: 50px;
+    text-align: center;
+}
+
+.submit-btn {
+    background: #495e57;
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #3d4f47;
+    transform: translateY(-2px);
+}
+
+.map-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    overflow: hidden;
+    height: fit-content;
+}
+
+.map-header {
+    padding: 30px;
+    background: linear-gradient(135deg, #495e57 0%, #3d4f47 100%);
+    color: white;
+    text-align: center;
+}
+
+.map-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: 'Markazi Text', serif;
+}
+
+.map-header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.contact-info {
+    padding: 30px;
+    background: #f8f9fa;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-icon {
+    width: 20px;
+    margin-right: 15px;
+    color: #495e57;
+}
+
+.success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.success-icon {
+    margin-right: 10px;
+    color: #28a745;
+}
+
+@media (max-width: 968px) {
+    .reservation-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .map-wrapper {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .reservation-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .form-card, .map-card {
+        margin: 0 10px;
+    }
+    
+    .reservation-container {
+        padding: 0 15px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="reservation-hero">
+    <div class="container">
+        <h1>Make a Reservation</h1>
+        <p>Reserve your table and experience our exceptional dining</p>
+    </div>
+</div>
+
+<section class="reservation-section">
+    <div class="reservation-container">
+        <div class="reservation-grid">
+            
+            <div class="form-card">
+                <h2>Book Your Table</h2>
+                <p class="form-subtitle">Fill out the form below to reserve your table. We'll confirm your booking shortly.</p>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="success-message">
+                            <i class="fas fa-check-circle success-icon"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <form method="post" id="reservationForm">
+                    {% csrf_token %}
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="id_first_name" class="form-label">First Name</label>
+                            <input type="text" 
+                                   name="first_name" 
+                                   id="id_first_name"
+                                   class="form-control" 
+                                   placeholder="Enter your first name"
+                                   required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id_last_name" class="form-label">Last Name</label>
+                            <input type="text" 
+                                   name="last_name" 
+                                   id="id_last_name"
+                                   class="form-control" 
+                                   placeholder="Enter your last name"
+                                   required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Number of Guests</label>
+                        <div class="guest-controls">
+                            <button type="button" class="guest-btn" onclick="changeGuests(-1)">−</button>
+                            <span class="guest-display" id="guestDisplay">1</span>
+                            <button type="button" class="guest-btn" onclick="changeGuests(1)">+</button>
+                            <input type="hidden" name="guest_number" id="guestInput" value="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_comment" class="form-label">Special Requests</label>
+                        <textarea name="comment" 
+                                  id="id_comment"
+                                  class="form-control" 
+                                  placeholder="Any special requests, dietary restrictions, or occasion details..."
+                                  rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                        Reserve Table
+                    </button>
+                </form>
+            </div>
+            
+            
+            <div class="map-card">
+                <div class="map-header">
+                    <h3>Visit Us</h3>
+                    <p>Hyde Park, Chicago, IL</p>
+                </div>
+                
+                <div class="map-wrapper">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11898.289517452584!2d-87.60853049433447!3d41.79442860243028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2912ce6f7027%3A0xc0cfb5545d4a37b2!2sHyde%20Park%2C%20Chicago%2C%20IL%2C%20USA!5e0!3m2!1sen!2spt!4v1662384760663!5m2!1sen!2spt"
+                        allowfullscreen="" 
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <span>Hyde Park, Chicago, IL</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>(555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>reservations@littlelemon.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <span>Open Daily: 5:00 PM - 11:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function changeGuests(change) {
+    const guestDisplay = document.getElementById('guestDisplay');
+    const guestInput = document.getElementById('guestInput');
+    
+    let currentGuests = parseInt(guestInput.value);
+    let newGuests = currentGuests + change;
+    
+    if (newGuests < 1) newGuests = 1;
+         if (newGuests > 20) newGuests = 20;
+    
+    guestDisplay.textContent = newGuests;
+    guestInput.value = newGuests;
+}
+
+
+document.getElementById('reservationForm').addEventListener('submit', function(e) {
+    const firstName = document.getElementById('id_first_name').value.trim();
+    const lastName = document.getElementById('id_last_name').value.trim();
+    
+    if (!firstName || !lastName) {
+        e.preventDefault();
+        alert('Please fill in both first and last name.');
+        return false;
+    }
+});
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}

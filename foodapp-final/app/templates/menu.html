@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+.menu-hero {
+    background: linear-gradient(135deg, #495e57 0%, #3d4f47 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.menu-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Markazi Text', serif;
+}
+
+.menu-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+.menu-section {
+    padding: 60px 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.menu-card-image {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.menu-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover .menu-card-image img {
+    transform: scale(1.05);
+}
+
+.menu-card-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Markazi Text', serif;
+}
+
+.menu-card-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.menu-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.menu-card-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #495e57;
+}
+
+.order-btn {
+    background: #495e57;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.order-btn:hover {
+    background: #3d4f47;
+    color: white;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.no-image-placeholder {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .menu-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .menu-card-content {
+        padding: 20px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="menu-hero">
+    <div class="container">
+        <h1>Our Delicious Menu</h1>
+        <p>Discover our carefully crafted dishes made with the finest ingredients</p>
+    </div>
+</div>
+
+<section class="menu-section">
+    <div class="container">
+        {% if menu_items %}
+            <div class="menu-grid">
+                {% for item in menu_items %}
+                    <div class="menu-card">
+                        <div class="menu-card-image">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                            {% else %}
+                                <div class="no-image-placeholder">
+                                    <i class="fas fa-utensils"></i>
+                                    <span class="ms-2">{{ item.name }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">{{ item.name }}</h3>
+                            <p class="menu-card-description">
+                                {% if item.description %}
+                                    {{ item.description }}
+                                {% else %}
+                                    A delicious dish prepared with care and the finest ingredients.
+                                {% endif %}
+                            </p>
+                            <div class="menu-card-footer">
+                                <div class="menu-card-price">Rs.{{ item.price }}</div>
+                                <a href="{% url 'order_item' item.id %}" class="order-btn">
+                                    Order Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h3>No menu items available</h3>
+                <p>Please check back later or contact us for more information.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

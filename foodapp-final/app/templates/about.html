@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+.about-hero {
+    background: linear-gradient(135deg, #495e57 0%, #3d4f47 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/media/plate.jpg') center/cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.about-hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Markazi Text', serif;
+}
+
+.about-hero p {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-section {
+    padding: 80px 0;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.story-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 600;
+}
+
+.story-text {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.story-text:last-child {
+    margin-bottom: 0;
+}
+
+.story-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.story-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 30px 20px 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+.values-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.value-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #495e57, #3d4f47);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 2rem;
+}
+
+.value-card h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.value-card p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.owners-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.owners-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.owners-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.owners-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quote-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #495e57;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.quote-author {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 968px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-hero h1 {
+        font-size: 3rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .about-container {
+        padding: 0 15px;
+    }
+    
+    .owners-image {
+        width: 250px;
+        height: 250px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="about-hero">
+    <div class="about-hero-content">
+        <div class="container">
+            <h1>About Little Lemon</h1>
+            <p>A family-owned Mediterranean restaurant bringing traditional recipes with a modern twist to Chicago</p>
+        </div>
+    </div>
+</div>
+
+<section class="about-section">
+    <div class="about-container">
+        <div class="story-grid">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p class="story-text">
+                    Based in Chicago, Illinois, Little Lemon is a family owned Mediterranean restaurant, 
+                    focused on traditional recipes served with a modern twist.
+                </p>
+                <p class="story-text">
+                    The chefs draw inspiration from Italian, Greek, and Turkish culture and have a menu 
+                    of 12-15 items that they rotate seasonally.
+                </p>
+                <p class="story-text">
+                    The restaurant has a rustic and relaxed atmosphere with moderate prices, making it 
+                    a popular place for a meal any time of the day.
+                </p>
+            </div>
+            
+            <div class="story-image">
+                <img src="/media/Mario and Adrian.jpg" alt="Mario and Adrian">
+                <div class="image-caption">
+                    Little Lemon owners Mario and Adrian
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="about-container">
+        <h2 class="section-title">Our Values</h2>
+        <p class="section-subtitle">
+            What makes Little Lemon special is our commitment to quality, authenticity, and exceptional dining experiences.
+        </p>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Family Tradition</h3>
+                <p>Every recipe comes from generations of family cooking, passed down through Italian traditions and perfected over time.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Fresh Ingredients</h3>
+                <p>We source the finest Mediterranean ingredients, ensuring every dish is made with the freshest and highest quality components.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Cultural Fusion</h3>
+                <p>Our menu celebrates the rich diversity of Mediterranean cuisine, blending Italian, Greek, and Turkish flavors harmoniously.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="owners-section">
+    <div class="about-container">
+        <div class="owners-content">
+            <h2 class="section-title">Meet the Owners</h2>
+            
+            <div class="owners-image">
+                <img src="/media/Mario and Adrian 1.jpg" alt="Mario and Adrian" />
+            </div>
+            
+            <p class="story-text">
+                Little Lemon is owned by two Italian brothers, Mario and Adrian, who moved to the 
+                United States to pursue their shared dream of owning a restaurant.
+            </p>
+            
+            <p class="story-text">
+                To craft the menu, Mario relies on family recipes and his experience as a chef in Italy. 
+                Adrian handles all the marketing for the restaurant and led the effort to expand the menu 
+                beyond classic Italian to incorporate additional cuisines from the Mediterranean region.
+            </p>
+            
+            <blockquote class="quote-text">
+                "Our dream was to bring the authentic taste of the Mediterranean to Chicago, 
+                creating a place where families can enjoy traditional recipes in a warm, welcoming atmosphere."
+            </blockquote>
+            <p class="quote-author">- Mario & Adrian, Founders</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
